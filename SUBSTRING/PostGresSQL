@@ -1,0 +1,54 @@
+PostGresSQL
+
+#SUBSTRING()
+
+SELECT SUBSTRING ('abcdefghijkl' FROM 5 FOR 3) test_string
+#returns 'efg' as column 'test_string'
+SELECT SUBSTRING ('abcdefghijkl' FROM 2 FOR 4) test_string
+#returns 'bcde' as column 'test_string'
+SELECT SUBSTRING ('abcdefghijkl' FROM 5) test_string
+#returns 'efghijkl' as column 'test_string'
+
+OVERLAY()
+
+SELECT OVERLAY(job_title PLACING 'Asst. ' FROM 1 FOR 10)
+FROM staff
+WHERE job_title LIKE 'Assistant%'
+#replaces job titles that have 'Assistant' with 'Asst.', and deleting the remaining 5 characters to keep 'Asst.' and not 'Asst.tant'
+
+#FILTERING WITH REGULAR EXPRESSIONS (i.e. 'SIMILAR TO')
+
+SELECT job_title
+FROM staff
+WHERE job_title SIMILAR TO '%Assistant%(III|IV)' 
+#returns job titles that end in 'Assitant III' or 'Assistant IV'
+
+SELECT job_title
+FROM staff
+WHERE job_title SIMILAR TO '%Assistant I_' 
+
+#with one underscore after the 'I' allows for any one roman numeral following 'Assistant'
+
+SELECT job_title
+FROM staff
+WHERE job_title SIMILAR TO '[EPS]%'
+
+#allows for any job_title that starts with an 'E', 'P', or 'S', and can be followed by any character and any number of characters 
+#the following is for reformatting numerical data
+
+SELECT department, AVG(salary), TRUNC(AVG(salary))
+FROM staff
+GROUP BY department
+#TRUNC() gets rid of decimal places, and can be different number-wise than using the ROUND() function
+#can specify decimal places by TRUNC(AVG(salary),2) like with ROUND() function
+
+#always wanna round up? do this. Wanna round down? replace 'CEIL()' with 'FLOOR()'
+
+SELECT department, AVG(salary), CEIL(AVG(salary))
+FROM staff
+GROUP BY department
+
+##SUBQUERIES IN SELECT CLAUSES
+
+
+
