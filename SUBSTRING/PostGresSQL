@@ -49,6 +49,17 @@ FROM staff
 GROUP BY department
 
 ##SUBQUERIES IN SELECT CLAUSES
-
+fucked up notes and change commit
+Rest is:
+-subqueries in FROM clauses
+-subqueries in WHERE clauses
+-basic joins
+-creating views
+-ROLLUP and CUBE to create subtotals
+-FETCH FIRST to find top results
+-OVER PARTITION window functions
+-FIRST_VALUE window functions
+-LAG and LEAD
+-NTILE functions
 
 
